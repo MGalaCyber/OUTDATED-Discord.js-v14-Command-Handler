@@ -128,7 +128,7 @@ module.exports = {
     userPerms: [], // Input the user permissions of the command
     options: [],
 
-    run: async (client, interaction, args, prefix) => {
+    async execute(client, interaction, args, prefix) {
         try {
         // Fill your code here
 

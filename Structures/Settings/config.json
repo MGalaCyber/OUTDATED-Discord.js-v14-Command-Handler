@@ -1,0 +1,32 @@
+{
+
+"Application_Information": {
+        "TOKEN": "Config in .env file or set it in the environment variable in your hostinger project",
+        "CLIENT_ID": "928260414356197418"
+},
+
+"DEVELOPER": {
+        "OWNER": ["682211671728455702"]
+},
+
+"SETTINGS": {
+        "PREFIX": ">",
+
+        "LogsSystem": {
+                "ErrorChannel": "985158977295884290"
+        }
+},
+
+"CONNECTIONS": {
+        "MONGO_URI": "Config in .env file or set it in the environment variable in your hostinger project",
+        "OAUTHO2_INVITE": "",
+        "WEBSITE": "",
+        "DISCORD_SUPPORT": ""
+
+},
+
+"SERVER_ID": {
+        "OFFICIAL": ["827064862378950686"],
+        "TEST": []
+}
+}

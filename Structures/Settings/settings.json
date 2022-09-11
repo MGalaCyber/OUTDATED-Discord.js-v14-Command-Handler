@@ -1,0 +1,9 @@
+{
+    "antiCrash": true,
+    "Enable_debug": false,
+    
+    "slashSettings": {
+        "globalSlash": true,
+        "guildSlashOnly": false
+    }
+}

@@ -1,0 +1,41 @@
+{
+  "name": "discord.js-v14-handler",
+  "version": "10.0.0",
+  "description": "Discord.js v14 Handler Template | Open Source, Javascript, with Message & Slash Commands, Mongoose Database, Multi Events, Multi Handler, Multi Features, Support Error Logs Report, etc.",
+  "main": "index.js",
+  "scripts": {
+    "test": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MGalaCyber/Discord.js-v14-Handler-Template.git"
+  },
+  "keywords": [
+    "Discordjsv14",
+    "Discord.js",
+    "Discord",
+    "Handler",
+    "SlashCommands",
+    "v14",
+    "Nodejs",
+    "MongoDB"
+  ],
+  "author": "MGalaCyber",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MGalaCyber/Discord.js-v14-Handler-Template/issues"
+  },
+  "homepage": "https://github.com/MGalaCyber/Discord.js-v14-Handler-Template#readme",
+  "dependencies": {
+    "@discordjs/rest": "^1.1.0",
+    "box-console": "^2.0.0",
+    "colors": "^1.4.0",
+    "discord.js": "^14.3.0",
+    "dotenv": "^16.0.1",
+    "fs": "^0.0.1-security",
+    "moment": "^2.29.4",
+    "mongoose": "^6.5.3",
+    "ms": "^2.1.3"
+  }
+}

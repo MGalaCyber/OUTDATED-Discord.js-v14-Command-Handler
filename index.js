@@ -32,15 +32,14 @@ module.exports = client;
 //=====================================| COLLECTIONS |=====================================\\
 
 client.commands = new Collection();
-client.slashCommands = new Collection();
+client.slash = new Collection();
 
-client.selecMenus = new Collection();
+client.selectMenus = new Collection();
 client.buttons = new Collection();
-client.modal = new Collection();
+client.modals = new Collection();
 
 client.categories = new Collection();
 client.cooldowns = new Collection();
-client.buttons = new Collection();
 client.aliases = new Collection();
 client.events = new Collection();
 
@@ -50,7 +49,7 @@ client.Databases = require(`${process.cwd()}/Structures/Handlers/mongoDB.js`);
 
 const handlersModules = [
     'events', 'checkEnvironment',
-    'messageCommands', /*'slashCommands',*/ 'modalCommands', 'selectCommands', 'buttonCommands',
+    'messageCommands', 'slashCommands', 'modalCommands', 'selectCommands', 'buttonCommands',
     Settings.antiCrash ? 'antiCrash' : null
 ];
 
@@ -58,13 +57,9 @@ handlersModules.forEach(handler => {
     require(`./Structures//Handlers/${handler}`)(client);
 });
 
-const { loadCommands, unloadCommands } = require('./Structures/Handlers/slashCommands');
-
 //=====================================| LOGIN TO BOT |=====================================\\
 
-client.login(process.env.TOKEN).then(() => {
-    loadCommands(client);
-}).catch((err) => console.log(err));
+client.login(process.env.TOKEN);
 
 
 

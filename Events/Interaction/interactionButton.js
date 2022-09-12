@@ -34,7 +34,7 @@ module.exports = {
                 }
                 if (interaction.user.bot) return;
 
-                const command = client.button.get(interaction.customId);
+                const command = client.buttons.get(interaction.customId);
                 if (!command) {
                     return interaction.reply({
                         ephemeral: true,

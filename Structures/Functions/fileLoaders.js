@@ -1,21 +1,18 @@
 //=====================================| Import the Module |=====================================\\
 
-const { readdirSync } = require('fs');
-const color = require('colors');
+const { glob } = require('glob');
+const { promisify } = require('util');
+const proGlob = promisify(glob);
 
 // ========================================| Code |======================================= \\
 
-module.exports = async (client) => {
-    const selectFolders = readdirSync(`${process.cwd()}/CMDList/SelectMenus`);
-    for (const folder of selectFolders) {
-        const selectFiles = readdirSync(`${process.cwd()}/CMDList/SelectMenus/${folder}/`).filter(file => file.endsWith('.js'));
-        for (const file of selectFiles) {
-            const select = require(`${process.cwd()}/CMDList/SelectMenus/${folder}/${file}`);
-            client.selectMenus.set(select.name, select);
-        };
-        console.log(`${color.bold.green(`[SELECTMENU COMMAND]`)} ` + `[${selectFiles.length}] `.cyan + `in `.yellow + `${folder} `.magenta + `was loaded!`.yellow);
-    };
-};
+async function loadFiles(dirNames) {
+    const Files = await proGlob(`${process.cwd().replace(/\\/g, '/')}/${dirNames}/**/*.js`);
+    Files.forEach((file) => delete require.cache[require.resolve(file)]);
+    return Files;
+}
+
+module.exports = { loadFiles };
 
 
 

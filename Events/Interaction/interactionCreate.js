@@ -1,6 +1,6 @@
 //=====================================| Import the Module |=====================================\
 
-const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, InteractionCreate, InteractionType, Collection, PermissionsBitField, ChannelType } = require('discord.js');
+const { ChatInputCommandInteraction, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, Collection, PermissionsBitField, ChannelType } = require('discord.js');
 const { errorCmdLogsInt } = require(`../../Structures/Functions/errorCmdLogs.js`);
 const { onCoolDownInt } = require(`../../Structures/Functions/onCoolDown.js`);
 const Settings = require(`../../Structures/Settings/settings.json`);
@@ -18,7 +18,7 @@ module.exports = {
 
     /**
      * 
-     * @param {CommandInteraction} interaction 
+     * @param {ChatInputCommandInteraction} interaction 
      * @param {Client} client 
      * @returns 
      */
@@ -35,8 +35,8 @@ module.exports = {
                 }
                 if (interaction.user.bot) return;
 
-                const command = client.slashCommands.get(interaction.commandName);
-                if (!command) return client.slashCommands.delete(interaction.commandName);
+                const command = client.slash.get(interaction.commandName);
+                if (!command) return client.slash.delete(interaction.commandName);
         
                 const args = [];
         
@@ -51,6 +51,26 @@ module.exports = {
                 interaction.member = interaction.guild.members.cache.get(interaction.user.id) || await interaction.guild.members.fetch(interaction.user.id).catch(() => null);
     
             // ========================================| Other list Handler |======================================= \\
+
+            // ====================< Official/Private Guilds only Check >=================== \\
+                const Developers = Config.DEVELOPER.OWNER;
+                if (command.ownerOnly && !Developers.includes(interaction.user.id)) {
+                    return interaction.reply({
+                        ephemeral: true,
+                        embeds: [
+                            new EmbedBuilder()
+                                .setColor(Embed.Colors.wrongcolor)
+                                .setTitle(`${Emoji.Message.ERROR} You can't use this Command!`)
+                                .setDescription(`The command \`${interaction.commandName}\` can only be used by Developer.`)
+                                .setFooter(`${Embed.footertext} · v${version}`, client.user.displayAvatarURL())
+                        ],
+                        components: [
+                            new ActionRowBuilder().addComponents(
+                                    new ButtonBuilder().setLabel('Click here').setStyle(ButtonStyle.Link).setURL(Config.CONNECTIONS.SUPPORT_URL.DISCORD_SUPPORT).setEmoji(Emoji.Buttons.Others.Support).setDisabled(false),
+                                )
+                            ]
+                    })
+                }
 
             // ====================< Official/Private Guilds only Check >=================== \\
                 const private = Config.SERVER_ID.OFFICIAL && Config.SERVER_ID.TEST;

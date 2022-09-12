@@ -11,7 +11,7 @@ module.exports = async (client) => {
         const modalFiles = readdirSync(`${process.cwd()}/CMDList/ModalMenus/${folder}/`).filter(file => file.endsWith('.js'));
         for (const file of modalFiles) {
             const modal = require(`${process.cwd()}/CMDList/ModalMenus/${folder}/${file}`);
-            client.modal.set(modal.name, modal);
+            client.modals.set(modal.name, modal);
         };
         console.log(`${color.bold.green(`[MODALS COMMAND]`)} ` + `[${modalFiles.length}] `.cyan + `in `.yellow + `${folder} `.magenta + `was loaded!`.yellow);
     };

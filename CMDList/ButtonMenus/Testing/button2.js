@@ -1,6 +1,6 @@
 //=====================================| Import the Module |=====================================\
 
-const { EmbedBuilder, ModalBuilder, ActionRowBuilder, TextInputComponent } = require('discord.js');
+const { EmbedBuilder, ModalBuilder, ActionRowBuilder, TextInputBuilder, TextInputStyle } = require('discord.js');
 const { errorCmdLogsInt } = require(`../../../Structures/Functions/errorCmdLogs.js`);
 const Settings = require(`../../../Structures/Settings/settings.json`);
 const Config = require(`../../../Structures/Settings/config.json`);
@@ -24,11 +24,11 @@ module.exports = {
                 .setTitle('Testing')
                 testingModal.addComponents(
                     new ActionRowBuilder().addComponents(
-                        new TextInputComponent()
+                        new TextInputBuilder()
                             .setCustomId('input-text')
                             .setLabel(`Input text here?`)
-                            .setStyle('SHORT') // SHORT or PARAGRAPH
-                            .setMinLength(18)
+                            .setStyle(TextInputStyle.Short) // SHORT or PARAGRAPH
+                            .setMinLength(5)
                             .setMaxLength(18)
                             .setPlaceholder('Write your text here...')
                             .setRequired(true)

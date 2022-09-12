@@ -25,7 +25,7 @@ module.exports = {
     async execute(interaction, client) {
         try {
             //=====================================| Command Handling |=====================================\\
-            if (interaction.type === InteractionType.ModalSubmit()) {
+            if (interaction.isModalSubmit()) {
                 if (!interaction.guild) {
                     return interaction.reply({
                         ephemeral: true,
@@ -33,9 +33,21 @@ module.exports = {
                     })
                 }
                 if (interaction.user.bot) return;
-
-                const command = client.modal.get(interaction.customId);
-                if (!command) return client.modal.delete(interaction.customId);
+                
+                if (interaction.type !== InteractionType.ModalSubmit) return;
+                const command = client.modals.get(interaction.customId);
+                if (!command) {
+                    return interaction.reply({
+                        ephemeral: true,
+                        embeds: [
+                            new EmbedBuilder()
+                                .setColor(Embed.Colors.wrongcolor)
+                                .setTitle(`${Emoji.Message.ERROR} Failed To Execute Modals!`)
+                                .setDescription(`I cant execute the modals for you.`)
+                                .setFooter(`${Embed.footertext} · v${version}`, client.user.displayAvatarURL())
+                        ]
+                    })
+                }
     
             // ====================< Start Command >=================== \\
                 try {

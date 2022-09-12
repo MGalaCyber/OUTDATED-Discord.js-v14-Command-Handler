@@ -34,8 +34,8 @@ module.exports = {
                 }
                 if (interaction.user.bot) return;
 
-                const command = client.slashCommands.get(interaction.commandName);
-                if (!command) return client.slashCommands.delete(interaction.commandName);
+                const command = client.slash.get(interaction.commandName);
+                if (!command) return client.slash.delete(interaction.commandName);
 
             // ========================================| Other list Handler |======================================= \\
 

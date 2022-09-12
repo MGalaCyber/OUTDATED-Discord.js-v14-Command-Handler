@@ -25,8 +25,8 @@ module.exports = {
     nsfwOnly: false,
     maintenanceCmd: false,
     //========| Permissions Settings |========\\
-    botPerms: [],
-    userPerms: [],
+    botPerms: ['SendMessages', 'ReadMessageHistory', 'ViewChannel', 'UseExternalEmojis'],
+    userPerms: ['SendMessages', 'ReadMessageHistory'],
     //========| Options Settings |========\\
     options: [],
 

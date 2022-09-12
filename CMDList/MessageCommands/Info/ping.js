@@ -10,7 +10,6 @@ const { EmbedBuilder } = require('discord.js');
 require('ms');
 
 //=====================================| Code |=====================================\\
-
 module.exports = {
     name: 'ping',
     usage: 'ping',
@@ -26,12 +25,12 @@ module.exports = {
     nsfwOnly: false,
     maintenanceCmd: false,
     //========| Permissions Settings |========\\
-    botPerms: [],
-    userPerms: ['SEND_MESSAGES'],
+    botPerms: ['SendMessages', 'ReadMessageHistory', 'ViewChannel', 'UseExternalEmojis'],
+    userPerms: ['SendMessages', 'ReadMessageHistory'],
 
     async execute(message, args, client, prefix) {
         try {
-            return message.reply({
+            message.channel.send({
                 content: 'pong!'
             })
             // // First

@@ -36,8 +36,8 @@ module.exports = {
                 ephemeral: true,
                 embeds: [
                     new EmbedBuilder()
-                        .setTitle('Avatar of ' + target.tag)
-                        .setImage(target.displayAvatarURL({ dynamic: true }))
+                        .setTitle('Avatar of ' + target.user.tag)
+                        .setImage(target.displayAvatarURL({ dynamic: true, size: 2048 }))
                 ]
             })
 

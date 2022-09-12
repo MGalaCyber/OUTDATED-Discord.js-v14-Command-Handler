@@ -33,7 +33,8 @@
 
 ---------
 # Discord.js v14 Handler Template
-### I suggest downloading the template handler in the [Releases](https://github.com/MGalaCyber/Discord.js-v14-Handler-Template/releases/latest) column, to avoid bugs
+### I suggest downloading the template handler in the [Release's](https://github.com/MGalaCyber/Discord.js-v14-Handler-Template/releases/latest) column, to avoid bugs
+### I suggest read wiki the template handler in the [Wiki's](https://github.com/MGalaCyber/Discord.js-v14-Handler-Template/wiki) for start configuration the handler
 
 ---------
 ## ⚙ Configuration

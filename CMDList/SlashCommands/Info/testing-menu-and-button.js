@@ -24,6 +24,11 @@ module.exports = {
     voiceOnly: false,
     nsfwOnly: false,
     maintenanceCmd: false,
+    //========| Permissions Settings |========\\
+    botPerms: ['SendMessages', 'ReadMessageHistory', 'ViewChannel', 'UseExternalEmojis'],
+    userPerms: ['SendMessages', 'ReadMessageHistory'],
+    //========| Options Settings |========\\
+    options: [],
 
     async execute(client, interaction, args, prefix) {
         try {

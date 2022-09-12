@@ -18,21 +18,12 @@ module.exports = {
     async execute(client, interaction, prefix) {
         try {
             const text = interaction.fields.getTextInputValue('input-text');
-            interaction.channel.send({
+            interaction.reply({
                 ephemeral: true,
                 embeds: [
                     new EmbedBuilder()
                         .setTitle('Success modal handler')
                         .setDescription(`You have sent a \`${text}\``)
-                ]
-            })
-
-            interaction.reply({
-                ephemeral: true,
-                embeds: [
-                    new EmbedBuilder()
-                        .setColor(Embed.Colors.SuccessColor)
-                        .setTitle(`${Emoji.Message.SUCCESS} Testing Modal Submitted!`)
                 ]
             })
 

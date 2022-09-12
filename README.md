@@ -1,6 +1,8 @@
 <div align="center">
   
-<!--   <img src="https://cdn.discordapp.com/attachments/893068961116225567/943053270375608360/FB_IMG_1642503622583.jpg" width="75%"></img>  -->
+  <a href="https://github.com/MGalaCyber/Discord.js-v13-Handler-Template">
+    <img src="https://media.discordapp.net/attachments/921614775421640714/1018708160996966440/DISCORD.JS_TEMPLATE_V14.png" width="75%"></img>
+  </a>
   
   ![GitHub release (latest by date)](https://img.shields.io/github/v/release/MGalaCyber/Discord.js-v14-Handler-Template?style=for-the-badge)
   ![GitHub all releases](https://img.shields.io/github/downloads/MGalaCyber/Discord.js-v14-Handler-Template/total?style=for-the-badge)

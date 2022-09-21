@@ -43,7 +43,7 @@ module.exports = {
                                 .setColor(Embed.Colors.wrongcolor)
                                 .setTitle(`${Emoji.Message.ERROR} Failed To Execute Button!`)
                                 .setDescription(`I cant execute the button for you.`)
-                                .setFooter(`${Embed.footertext} · v${version}`, client.user.displayAvatarURL())
+                                .setFooter({ text: `${Embed.footertext} · v${version}`, iconURL: client.user.displayAvatarURL() })
                         ]
                     })
                 }
@@ -59,7 +59,7 @@ module.exports = {
                                 .setColor(Embed.Colors.wrongcolor)
                                 .setTitle(`${Emoji.Message.ERROR} You can't Click This Button!`)
                                 .setDescription(`The button is author only can use this button.`)
-                                .setFooter(`${Embed.footertext} · v${version}`, client.user.displayAvatarURL())
+                                .setFooter({ text: `${Embed.footertext} · v${version}`, iconURL: client.user.displayAvatarURL() })
                         ]
                     })
                 }
@@ -77,7 +77,7 @@ module.exports = {
                                 .setDescription(`${Emoji.Message.ERROR} There was an error trying to execute that button!`)
                                 .setDescription(`There was an error trying to execute that button.`)
                                 .addField('Error', `\`\`\`${error}\`\`\``)
-                                .setFooter(`${Embed.footertext} · v${version}`, client.user.displayAvatarURL())
+                                .setFooter({ text: `${Embed.footertext} · v${version}`, iconURL: client.user.displayAvatarURL() })
                         ]
                     })
                 }

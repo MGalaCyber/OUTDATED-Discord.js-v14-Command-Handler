@@ -1,6 +1,6 @@
 //=====================================| Import the Module |=====================================\
 
-const { ChatInputCommandInteraction, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, Collection, PermissionsBitField, ChannelType } = require('discord.js');
+const { CommandInteraction, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, Collection, PermissionsBitField, ChannelType } = require('discord.js');
 const { errorCmdLogsInt } = require(`../../Structures/Functions/errorCmdLogs.js`);
 const { onCoolDownInt } = require(`../../Structures/Functions/onCoolDown.js`);
 const Settings = require(`../../Structures/Settings/settings.json`);
@@ -18,9 +18,8 @@ module.exports = {
 
     /**
      * 
-     * @param {ChatInputCommandInteraction} interaction 
+     * @param {CommandInteraction} interaction 
      * @param {Client} client 
-     * @returns 
      */
     
     async execute(interaction, client) {
@@ -36,7 +35,18 @@ module.exports = {
                 if (interaction.user.bot) return;
 
                 const command = client.slash.get(interaction.commandName);
-                if (!command) return client.slash.delete(interaction.commandName);
+                if (!command) {
+                    return interaction.reply({
+                      ephemeral: true,
+                      embeds: [
+                        new EmbedBuilder()
+                            .setColor(Embed.Colors.wrongcolor)
+                            .setTitle(`${Emoji.Message.No} ${interaction.user.username} You have entered an invalid command!`)
+                            .setDescription(`The command \`${interaction.commandName}\` is outdated.\nPlease use \`${prefix}help\` to see all the commands.`)
+                            .setFooter({ text: `${Embed.footertext} · v${version}`, iconURL: client.user.displayAvatarURL() })
+                      ]
+                    });
+                  };
         
                 const args = [];
         
@@ -62,7 +72,7 @@ module.exports = {
                                 .setColor(Embed.Colors.wrongcolor)
                                 .setTitle(`${Emoji.Message.ERROR} You can't use this Command!`)
                                 .setDescription(`The command \`${interaction.commandName}\` can only be used by Developer.`)
-                                .setFooter(`${Embed.footertext} · v${version}`, client.user.displayAvatarURL())
+                                .setFooter({ text: `${Embed.footertext} · v${version}`, iconURL: client.user.displayAvatarURL() })
                         ],
                         components: [
                             new ActionRowBuilder().addComponents(
@@ -82,7 +92,7 @@ module.exports = {
                                 .setColor(Embed.Colors.wrongcolor)
                                 .setTitle(`${Emoji.Message.ERROR} You can't use this Command!`)
                                 .setDescription(`The command \`${interaction.commandName}\` can only be used in the official server.`)
-                                .setFooter(`${Embed.footertext} · v${version}`, client.user.displayAvatarURL())
+                                .setFooter({ text: `${Embed.footertext} · v${version}`, iconURL: client.user.displayAvatarURL() })
                         ],
                         components: [
                             new ActionRowBuilder().addComponents(
@@ -101,7 +111,7 @@ module.exports = {
                                 .setColor(Embed.Colors.wrongcolor)
                                 .setTitle(`${Emoji.Message.ERROR} You can't use this Command!`)
                                 .setDescription(`The command \`${interaction.commandName}\` has been disabled by the Developer! Please try again later.`)
-                                .setFooter(`${Embed.footertext} · v${version}`, client.user.displayAvatarURL())
+                                .setFooter({ text: `${Embed.footertext} · v${version}`, iconURL: client.user.displayAvatarURL() })
                         ]
                     })
                 }
@@ -115,7 +125,7 @@ module.exports = {
                                 .setColor(Embed.Colors.wrongcolor)
                                 .setTitle(`${Emoji.Message.ERROR} You can't use this Command!`)
                                 .setDescription(`The command \`${interaction.commandName}\` has been maintenance, because the command is currently bug fixed! Please try again later.`)
-                                .setFooter(`${Embed.footertext} · v${version}`, client.user.displayAvatarURL())
+                                .setFooter({ text: `${Embed.footertext} · v${version}`, iconURL: client.user.displayAvatarURL() })
                         ]
                     })
                 }
@@ -129,7 +139,7 @@ module.exports = {
                                 .setColor(Embed.Colors.wrongcolor)
                                 .setTitle(`${Emoji.Message.ERROR} You can't use this Command!`)
                                 .setDescription(`The command \`${interaction.commandName}\` only can use if you join to the voice! Please join to voice and Please try again later.`)
-                                .setFooter(`${Embed.footertext} · v${version}`, client.user.displayAvatarURL())
+                                .setFooter({ text: `${Embed.footertext} · v${version}`, iconURL: client.user.displayAvatarURL() })
                         ]
                     })
                 }
@@ -142,7 +152,7 @@ module.exports = {
                             new EmbedBuilder()
                                 .setColor(Embed.Colors.wrongcolor)
                                 .setDescription(`${Emoji.Message.ERROR} This command can only be used in NSFW channels!`)
-                                .setFooter(`${Embed.footertext} · v${version}`, client.user.displayAvatarURL())
+                                .setFooter({ text: `${Embed.footertext} · v${version}`, iconURL: client.user.displayAvatarURL() })
                         ]
                     })
                 }
@@ -155,7 +165,7 @@ module.exports = {
                             new EmbedBuilder()
                                 .setColor(Embed.Colors.wrongcolor)
                                 .setDescription(`${Emoji.Message.ERROR} I don't have the required permissions to use this command\n \`${command.botPerms.join(`, `)}\``)
-                                .setFooter(`${Embed.footertext} · v${version}`, client.user.displayAvatarURL())
+                                .setFooter({ text: `${Embed.footertext} · v${version}`, iconURL: client.user.displayAvatarURL() })
                         ]
                     })
                 }
@@ -168,21 +178,21 @@ module.exports = {
                             new EmbedBuilder()
                                 .setColor(Embed.Colors.wrongcolor)
                                 .setDescription(`${Emoji.Message.ERROR} You don't have the required permissions to use this command\n \`${command.userPerms.join(`, `)}\``)
-                                .setFooter(`${Embed.footertext} · v${version}`, client.user.displayAvatarURL())
+                                .setFooter({ text: `${Embed.footertext} · v${version}`, iconURL: client.user.displayAvatarURL() })
                         ]
                     })
                 }
     
             // ====================< Cooldown Check InterrorCmdLogsInt=================== \\
-                if (command.cooldown && onCoolDownInt(interaction, command)) {
+                if (onCoolDownInt(interaction, command)) {
                     return interaction.reply({
                         ephemeral: true,
                         embeds: [
                             new EmbedBuilder()
                                 .setColor(Embed.Colors.wrongcolor)
                                 .setTitle(`${Emoji.Message.ERROR} You have been cooldown for \`${command.cooldown}\` seconds!`)
-                                .setDescription(`Please wait \`${onCoolDownInt(interaction, command).toFixed(1)}\` Before using the \`${command.name}\` command again!`)
-                                .setFooter(`${Embed.footertext} · v${version}`, client.user.displayAvatarURL())
+                                .setDescription(`Please wait \`${onCoolDownInt(interaction, command).toFixed(1)}\` Before using the \`${interaction.commandName}\` command again!`)
+                                .setFooter({ text: `${Embed.footertext} · v${version}`, iconURL: client.user.displayAvatarURL() })
                         ]
                     })
                 }
@@ -200,7 +210,7 @@ module.exports = {
                                 .setDescription(`${Emoji.Message.ERROR} There was an error trying to execute that command!`)
                                 .setDescription(`There was an error trying to execute that command.`)
                                 .addField('Error', `\`\`\`${error}\`\`\``)
-                                .setFooter(`${Embed.footertext} · v${version}`, client.user.displayAvatarURL())
+                                .setFooter({ text: `${Embed.footertext} · v${version}`, iconURL: client.user.displayAvatarURL() })
                         ]
                     })
                 }

@@ -44,7 +44,7 @@ module.exports = {
                                 .setColor(Embed.Colors.wrongcolor)
                                 .setTitle(`${Emoji.Message.ERROR} Failed To Execute Modals!`)
                                 .setDescription(`I cant execute the modals for you.`)
-                                .setFooter(`${Embed.footertext} · v${version}`, client.user.displayAvatarURL())
+                                .setFooter({ text: `${Embed.footertext} · v${version}`, iconURL: client.user.displayAvatarURL() })
                         ]
                     })
                 }
@@ -62,7 +62,7 @@ module.exports = {
                                 .setDescription(`${Emoji.Message.ERROR} There was an error trying to execute that modal!`)
                                 .setDescription(`There was an error trying to execute that modal.`)
                                 .addField('Error', `\`\`\`${error}\`\`\``)
-                                .setFooter(`${Embed.footertext} · v${version}`, client.user.displayAvatarURL())
+                                .setFooter({ text: `${Embed.footertext} · v${version}`, iconURL: client.user.displayAvatarURL() })
                         ]
                     })
                 }

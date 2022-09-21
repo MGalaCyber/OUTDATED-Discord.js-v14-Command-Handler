@@ -1,7 +1,7 @@
 {
     "Message": {
-        "SUCCESS" : "<:Yes:893078238635642931>",
-        "ERROR" : "<:No:893078238522384426>"
+        "SUCCESS" : "✅",
+        "ERROR" : "❎"
     },
 
     "System": {

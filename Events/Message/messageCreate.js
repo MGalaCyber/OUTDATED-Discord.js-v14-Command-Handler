@@ -36,7 +36,7 @@ module.exports = {
                             .setColor(Embed.successsolor)
                             .setTitle(`${Emoji.Message.SUCCESS} ${message.author.username} I am here!`)
                             .setDescription(`You can use \`${prefix}help\` to see all the message commands. or, you can use \`/help\` to see all the slash commands.`)
-                            .setFooter(`${Embed.footertext} · v${version}`, client.user.displayAvatarURL())
+                            .setFooter({ text: `${Embed.footertext} · v${version}`, iconURL: client.user.displayAvatarURL() })
                     ]
                 }).then(m => setTimeout(() => m.delete(), 6000));
             }
@@ -59,7 +59,7 @@ module.exports = {
                             .setColor(Embed.Colors.wrongcolor)
                             .setTitle(`${Emoji.Message.ERROR} ${message.author.username} You have entered an invalid command!`)
                             .setDescription(`The command \`${commandName}\` does not exist.\nPlease use \`${prefix}help\` to see all the commands.`)
-                            .setFooter(`${Embed.footertext} · v${version}`, client.user.displayAvatarURL())
+                            .setFooter({ text: `${Embed.footertext} · v${version}`, iconURL: client.user.displayAvatarURL() })
                     ]
                 }).then(m => setTimeout(() => m.delete(), 6000));
             }
@@ -75,7 +75,7 @@ module.exports = {
                                 .setColor(Embed.Colors.wrongcolor)
                                 .setTitle(`${Emoji.Message.ERROR} ${message.author.username} You have entered an invalid command!`)
                                 .setDescription(`The command \`${commandName}\` does not exist.\nPlease use \`${prefix}help\` to see all the commands.`)
-                                .setFooter(`${Embed.footertext} · v${version}`, client.user.displayAvatarURL())
+                                .setFooter({ text: `${Embed.footertext} · v${version}`, iconURL: client.user.displayAvatarURL() })
                             ]
                         }).then(m => setTimeout(() => m.delete(), 6000));
                     }
@@ -89,7 +89,7 @@ module.exports = {
                                 .setColor(Embed.Colors.wrongcolor)
                                 .setTitle(`${Emoji.Message.ERROR} ${message.author.username} You have entered an invalid command!`)
                                 .setDescription(`The command \`${commandName}\` can only be used in the official server.`)
-                                .setFooter(`${Embed.footertext} · v${version}`, client.user.displayAvatarURL())
+                                .setFooter({ text: `${Embed.footertext} · v${version}`, iconURL: client.user.displayAvatarURL() })
                             ],
                             components: [
                                 new ActionRowBuilder().addComponents(
@@ -108,7 +108,7 @@ module.exports = {
                                 .setColor(Embed.Colors.wrongcolor)
                                 .setTitle(`${Emoji.Message.ERROR} You can't use this Command!`)
                                 .setDescription(`The command \`${message.commandName}\` has been disabled by the Developer! Please try again later.`)
-                                .setFooter(`${Embed.footertext} · v${version}`, client.user.displayAvatarURL())
+                                .setFooter({ text: `${Embed.footertext} · v${version}`, iconURL: client.user.displayAvatarURL() })
                         ]
                     })
                 }
@@ -121,7 +121,7 @@ module.exports = {
                                 .setColor(Embed.Colors.wrongcolor)
                                 .setTitle(`${Emoji.Message.ERROR} You can't use this Command!`)
                                 .setDescription(`The command \`${message.commandName}\` has been maintenance, because the command is currently bug fixed! Please try again later.`)
-                                .setFooter(`${Embed.footertext} · v${version}`, client.user.displayAvatarURL())
+                                .setFooter({ text: `${Embed.footertext} · v${version}`, iconURL: client.user.displayAvatarURL() })
                         ]
                     })
                 }
@@ -134,7 +134,7 @@ module.exports = {
                                 .setColor(Embed.Colors.wrongcolor)
                                 .setTitle(`${Emoji.Message.ERROR} You can't use this Command!`)
                                 .setDescription(`The command \`${message.commandName}\` only can use if you join to the voice! Please join to voice and Please try again later.`)
-                                .setFooter(`${Embed.footertext} · v${version}`, client.user.displayAvatarURL())
+                                .setFooter({ text: `${Embed.footertext} · v${version}`, iconURL: client.user.displayAvatarURL() })
                         ]
                     })
                 }
@@ -147,7 +147,7 @@ module.exports = {
                                 .setColor(Embed.Colors.wrongcolor)
                                 .setTitle(`${Emoji.Message.ERROR} ${message.author.username} This command only works in NSFW channels!`)
                                 .setDescription(`Please go to the NSFW channel to use this command!`)
-                                .setFooter(`${Embed.footertext} · v${version}`, client.user.displayAvatarURL())
+                                .setFooter({ text: `${Embed.footertext} · v${version}`, iconURL: client.user.displayAvatarURL() })
                             ]
                         }).then(m => setTimeout(() => m.delete(), 6000));
                     }
@@ -160,7 +160,7 @@ module.exports = {
                                 .setColor(Embed.Colors.wrongcolor)
                                 .setTitle(`${Emoji.Message.ERROR} I do not have the required permissions to execute this command!`)
                                 .setDescription(`I need the following permissions: \`${command.botPerms}\``)
-                                .setFooter(`${Embed.footertext} · v${version}`, client.user.displayAvatarURL())
+                                .setFooter({ text: `${Embed.footertext} · v${version}`, iconURL: client.user.displayAvatarURL() })
                             ]
                         }).then(m => setTimeout(() => m.delete(), 6000));
                     }
@@ -173,20 +173,20 @@ module.exports = {
                                 .setColor(Embed.Colors.wrongcolor)
                                 .setTitle(`${Emoji.Message.ERROR} ${message.author.username} You do not have the required permissions to execute this command!`)
                                 .setDescription(`You need the following permissions: \`${command.userPerms}\``)
-                                .setFooter(`${Embed.footertext} · v${version}`, client.user.displayAvatarURL())
+                                .setFooter({ text: `${Embed.footertext} · v${version}`, iconURL: client.user.displayAvatarURL() })
                             ]
                         }).then(m => setTimeout(() => m.delete(), 6000));
                     }
     
             // ====================< Cooldown Check >=================== \\
-            if (command.cooldown && onCoolDownMsg(message, command)) {
+            if (onCoolDownMsg(message, command)) {
                 return message.reply({
                     embeds: [
                         new EmbedBuilder()
                             .setColor(Embed.Colors.wrongcolor)
                             .setTitle(`${Emoji.Message.ERROR} ${message.author.username}, You have been cooldown for \`${command.cooldown}\` seconds!`)
                             .setDescription(`Please wait \`${onCoolDownMsg(message, command).toFixed(1)}\` Before using the \`${command.name}\` command again!`)
-                            .setFooter(`${Embed.footertext} · v${version}`, client.user.displayAvatarURL())
+                            .setFooter({ text: `${Embed.footertext} · v${version}`, iconURL: client.user.displayAvatarURL() })
                         ]
                     }).then(m => setTimeout(() => m.delete(), onCoolDownMsg(message, command) * 1000));
                 }
@@ -203,7 +203,7 @@ module.exports = {
                             .setTitle(`${Emoji.Message.ERROR} ${message.author.username} There was an error trying to execute that command!`)
                             .setDescription(`There was an error trying to execute that command.`)
                             .addField('Error', `\`\`\`${error}\`\`\``)
-                            .setFooter(`${Embed.footertext} · v${version}`, client.user.displayAvatarURL())
+                            .setFooter({ text: `${Embed.footertext} · v${version}`, iconURL: client.user.displayAvatarURL() })
                         ]
                     }).then(m => setTimeout(() => m.delete(), 6000));
                 }
